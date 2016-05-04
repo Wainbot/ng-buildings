@@ -1,0 +1,28 @@
+<div class="col-md-12">
+    <h3>
+        <button class="btn btn-primary-outline btn-sm" data-ui-sref="app.building({ tag: building })" style="border: none;">
+            <i style="float: left; font-size: 22pt;" class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;
+        </button>
+        Level n°{{level.number}}
+    </h3>
+    <hr>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card">
+            <div class="card-block" style="margin-bottom: 30px;">
+                <h5>Informations</h5>
+                <hr>
+                <form data-ng-submit="updateLevel()">
+                    <fieldset class="form-group">
+                        <label for="img">Change image</label>
+                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <small class="text-muted">The image of level</small>
+                    </fieldset>
+                    <hr>
+                    <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{level.imageid}}" width="100%" alt="image of {{building.name}}">
+                    <hr>
+                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="col-md-12">
+    <h3>
+        <button class="btn btn-primary-outline btn-sm" data-ui-sref="app.dashboard" style="border: none;">
+            <i style="float: left; font-size: 22pt;" class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;
+        </button>
+        Building {{building.name}}
+    </h3>
+    <hr>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block" style="margin-bottom: 30px;">
+                <h5>Informations</h5>
+                <hr>
+                <form data-ng-submit="updateBuilding()">
+                    <fieldset class="form-group">
+                        <label for="label">Name</label>
+                        <input type="text" class="form-control" id="label" placeholder="Name" data-ng-model="building.name">
+                        <small class="text-muted">The name of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Description" data-ng-model="building.description">
+                        <small class="text-muted">The description of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="tag">Tag</label>
+                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tag">
+                        <small class="text-muted">The tag of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="img">Change image</label>
+                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <small class="text-muted">The image of building</small>
+                    </fieldset>
+                    <hr>
+                    <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{building.imageid}}" width="100%" alt="image of {{building.name}}">
+                    <hr>
+                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-block" style="margin-bottom: 30px;">
+                <h5>
+                    Levels
+                    <button class="btn btn-success-outline btn-sm pull-right" data-ui-sref="app.createlevel({ tag: building.tag })">New Level</button>
+                </h5>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Description</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="level in building.levels">
+                        <td>{{level.level}}</td>
+                        <td>
+                            <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{level.imageid}}" width="20" height="20" alt="image of level n°{{level.level}}">
+                        </td>
+                        <td>
+                            <a class="btn btn-link btn-sm" data-ui-sref="app.level({ tag: building.tag, level: level.level })">
+                                <i class="fa fa-pencil-square" style="font-size: 14pt"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-link btn-sm text-danger" data-ng-click="deleteLevel(level.level)">
+                                <i class="fa fa-times" style="font-size: 14pt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

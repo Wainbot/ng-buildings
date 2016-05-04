@@ -1,0 +1,44 @@
+<div class="col-md-12">
+    <h3>
+        <button class="btn btn-primary-outline btn-sm" data-ui-sref="app.dashboard" style="border: none;">
+            <i style="float: left; font-size: 22pt;" class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;
+        </button>
+        New Building
+    </h3>
+    <hr>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card">
+            <div class="card-block" style="margin-bottom: 30px;">
+                <h5>Informations</h5>
+                <hr>
+                <form data-ng-submit="createBuilding()">
+                    <fieldset class="form-group">
+                        <label for="label">Name</label>
+                        <input type="text" class="form-control" id="label" placeholder="Name" data-ng-model="building.name">
+                        <small class="text-muted">The name of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Description" data-ng-model="building.description">
+                        <small class="text-muted">The description of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="tag">Tag</label>
+                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tag">
+                        <small class="text-muted">The tag of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
+                        <label for="img">Image</label>
+                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <small class="text-muted">The image of building</small>
+                    </fieldset>
+                    <hr>
+                    <button type="submit" class="btn btn-primary pull-right">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

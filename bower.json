@@ -1,0 +1,24 @@
+{
+  "name": "ng-branding-v2",
+  "authors": [
+    "Jérémy Froment <jeremy.froment@educlever.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "font-awesome": "^4.6.1",
+    "bootstrap": "v4.0.0-alpha.2",
+    "tether": "^1.3.1"
+  }
+}

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+    <a class="navbar-brand" href data-ui-sref="app.dashboard">
+        <span style="float: left;">Buildings Admin</span>
+    </a>
+    <div class="navbar-toggleable-xs collapse" aria-expanded="false" style="height: 0;">
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav-item active">
+                <a href data-ui-sref="app.dashboard" class="nav-link">
+                    <i class="fa fa-home" style="font-size: 19pt;"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="alert alert-danger" role="alert" data-ng-show="$root.error">
+        <strong>Erreur !</strong> {{$root.error}}.
+    </div>
+    <div class="row" data-ui-view></div>
+</div>

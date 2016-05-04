@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <h3>
+        Buildings
+        <button class="btn btn-success-outline pull-right" data-ui-sref="app.createbuilding">New Building</button>
+    </h3>
+    <hr>
+    <div class="card">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="building in buildings">
+                <td>{{building.name}}</td>
+                <td>{{building.description}}</td>
+                <td>
+                    <a class="btn btn-link btn-sm" data-ui-sref="app.building({tag: building.tag})">
+                        <i class="fa fa-pencil-square" style="font-size: 14pt"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-link btn-sm text-danger" data-ng-click="deleteBuilding(building.tag)">
+                        <i class="fa fa-times" style="font-size: 14pt"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
