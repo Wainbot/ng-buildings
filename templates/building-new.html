@@ -11,7 +11,7 @@
             <div class="card-block" style="margin-bottom: 30px;">
                 <h5>Informations</h5>
                 <hr>
-                <form data-ng-submit="createBuilding()">
+                <form data-ng-submit="newBuilding()">
                     <fieldset class="form-group">
                         <label for="label">Name</label>
                         <input type="text" class="form-control" id="label" placeholder="Name" data-ng-model="building.name">
@@ -26,15 +26,19 @@
                     <hr>
                     <fieldset class="form-group">
                         <label for="tag">Tag</label>
-                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tag">
+                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tagid">
                         <small class="text-muted">The tag of building</small>
                     </fieldset>
                     <hr>
                     <fieldset class="form-group">
                         <label for="img">Image</label>
-                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <label class="file" id="img" style="width: 100%;">
+                            <input type="file" id="file">
+                            <span class="file-custom"></span>
+                        </label>
                         <small class="text-muted">The image of building</small>
                     </fieldset>
+                    <img src="" data-ng-if="building.pic" data-ng-src="{{building.pic}}" alt="">
                     <hr>
                     <button type="submit" class="btn btn-primary pull-right">Create</button>
                 </form>

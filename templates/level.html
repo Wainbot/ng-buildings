@@ -14,13 +14,16 @@
                 <form data-ng-submit="updateLevel()">
                     <fieldset class="form-group">
                         <label for="img">Change image</label>
-                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <label class="file" id="img" style="width: 100%;">
+                            <input type="file" id="file">
+                            <span class="file-custom"></span>
+                        </label>
                         <small class="text-muted">The image of level</small>
                     </fieldset>
                     <hr>
-                    <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{level.imageid}}" width="100%" alt="image of {{building.name}}">
+                    <img data-ng-if="level.pic" class="img-fluid" data-ng-src="{{level.pic}}" width="100%">
                     <hr>
-                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                    <button type="submit" class="btn btn-primary pull-right" data-ng-click="updateLevel()">Update</button>
                 </form>
             </div>
         </div>

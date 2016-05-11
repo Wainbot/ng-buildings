@@ -13,16 +13,20 @@
                 <hr>
                 <fieldset class="form-group">
                     <label for="level">Level</label>
-                    <input type="number" class="form-control" id="level" placeholder="Level" data-ng-model="level.level">
+                    <input type="number" class="form-control" id="level" placeholder="Level" data-ng-model="level.number">
                     <small class="text-muted">The number of level</small>
                 </fieldset>
                 <hr>
-                <form data-ng-submit="createLevel()">
+                <form data-ng-submit="newLevel()">
                     <fieldset class="form-group">
                         <label for="img">Image</label>
-                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <label class="file" id="img" style="width: 100%;">
+                            <input type="file" id="file">
+                            <span class="file-custom"></span>
+                        </label>
                         <small class="text-muted">The image of level</small>
                     </fieldset>
+                    <img data-ng-if="level.pic" data-ng-src="{{level.pic}}" id="img-rendu" alt="">
                     <hr>
                     <button type="submit" class="btn btn-primary pull-right">Create</button>
                 </form>

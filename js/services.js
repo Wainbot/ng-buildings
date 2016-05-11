@@ -5,7 +5,7 @@ app.service('REST', function ($q, $http, $rootScope) {
 
             $http(req)
                 .then(function (response) {
-                    if (response.status === 200) {
+                    if ([200, 201, 202, 204].indexOf(response.status) != -1) {
                         defered.resolve(response.data);
                     } else {
                         defered.reject(response);
@@ -73,13 +73,14 @@ app.service('Buildings', function (REST) {
         deleteLevel: function (tagid, levelid) {
             return REST.send({
                 method: 'DELETE',
-                url: url + tagid + "/" + levelid
+                url: url + tagid + '/' + levelid,
+                toto: 1
             });
         },
         updateLevel: function (tagid, level) {
             return REST.send({
                 method: 'PUT',
-                url: url + tagid + "/" + level.id,
+                url: url + tagid + "/" + level.number,
                 data: level
             });
         }

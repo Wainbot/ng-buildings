@@ -13,6 +13,12 @@
                 <hr>
                 <form data-ng-submit="updateBuilding()">
                     <fieldset class="form-group">
+                        <label for="tag">Tag</label>
+                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tag" disabled>
+                        <small class="text-muted">The tag of building</small>
+                    </fieldset>
+                    <hr>
+                    <fieldset class="form-group">
                         <label for="label">Name</label>
                         <input type="text" class="form-control" id="label" placeholder="Name" data-ng-model="building.name">
                         <small class="text-muted">The name of building</small>
@@ -25,20 +31,17 @@
                     </fieldset>
                     <hr>
                     <fieldset class="form-group">
-                        <label for="tag">Tag</label>
-                        <input type="text" class="form-control" id="tag" placeholder="Tag" data-ng-model="building.tag">
-                        <small class="text-muted">The tag of building</small>
-                    </fieldset>
-                    <hr>
-                    <fieldset class="form-group">
                         <label for="img">Change image</label>
-                        <input type="image" class="form-control" id="img" placeholder="Image">
+                        <label class="file" id="img" style="width: 100%;">
+                            <input type="file" id="file">
+                            <span class="file-custom"></span>
+                        </label>
                         <small class="text-muted">The image of building</small>
                     </fieldset>
                     <hr>
-                    <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{building.imageid}}" width="100%" alt="image of {{building.name}}">
+                    <img data-ng-if="building.pic" id="img-rendu" class="img-fluid" data-ng-src="{{building.pic}}" alt="image of {{building.name}}">
                     <hr>
-                    <button type="submit" class="btn btn-primary pull-right">Update</button>
+                    <button type="submit" class="btn btn-primary pull-right" data-ng-click="updateBuilding()">Update</button>
                 </form>
             </div>
         </div>
@@ -64,7 +67,7 @@
                     <tr data-ng-repeat="level in building.levels">
                         <td>{{level.level}}</td>
                         <td>
-                            <img data-ng-src="http://vps.jeremyfroment.fr:3002/rest/image/{{level.imageid}}" width="20" height="20" alt="image of level n°{{level.level}}">
+                            <img data-ng-src="{{level.pic}}" width="20" height="20" alt="image of level n°{{level.level}}">
                         </td>
                         <td>
                             <a class="btn btn-link btn-sm" data-ui-sref="app.level({ tag: building.tag, level: level.level })">
@@ -72,7 +75,7 @@
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-link btn-sm text-danger" data-ng-click="deleteLevel(level.level)">
+                            <a class="btn btn-link btn-sm text-danger" data-ng-click="deleteLevel(building.tag, level.level)">
                                 <i class="fa fa-times" style="font-size: 14pt"></i>
                             </a>
                         </td>

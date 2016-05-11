@@ -51,11 +51,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 $scope.building = building;
                 console.log("Building :", $scope.building);
 
-                $scope.deleteLevel = function (levelid) {
+                $scope.deleteLevel = function (tagid, levelid) {
                     if (confirm("Are you sure you want to delete this level ?")) {
-                        Buildings.deleteLevel($scope.building.tag, levelid)
+                        Buildings.deleteLevel(tagid, levelid)
                             .then(function () {
-                                Buildings.getBuilding()
+                                Buildings.getBuilding(tagid)
                                     .then(function (response) {
                                         $scope.building = response;
                                         console.log("Building :", $scope.building);
@@ -65,19 +65,70 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                             });
                     }
                 };
+
+                $scope.updateBuilding = function () {
+                    Buildings.updateBuilding($scope.building)
+                        .then(function () {
+                            Buildings.getBuilding($scope.building.tag)
+                                .then(function (response) {
+                                    $scope.building = response;
+                                    console.log("Building :", $scope.building);
+                                });
+                        }, function (err) {
+                            $rootScope.error = err;
+                        });
+                };
+
+                function EL(id) { return document.getElementById(id); }
+
+                function readFile() {
+                    if (this.files && this.files[0]) {
+                        var FR= new FileReader();
+                        FR.onload = function(e) {
+                            $scope.$apply(function () {
+                                $scope.building.pic = e.target.result;
+                            });
+                            console.log($scope.building.pic);
+                        };
+                        FR.readAsDataURL( this.files[0] );
+                    }
+                }
+
+                EL("file").addEventListener("change", readFile, false);
             }]
         })
 
         .state('app.createbuilding', {
             url: "/buildingcreate",
             templateUrl: "./templates/building-new.html",
-            controller: ["$rootScope", "$scope", "Buildings", function ($rootScope, $scope, Buildings) {
+            controller: ["$rootScope", "$scope", "$state", "Buildings", function ($rootScope, $scope, $state, Buildings) {
                 $scope.building = {};
 
                 $scope.newBuilding = function () {
-                    console.log($scope.building);
-                    //Buildings.createBuilding($scope.building);
+                    console.log('newBuilding :', $scope.building);
+                    Buildings.createBuilding($scope.building)
+                        .then(function () {
+                            $state.go('app.dashboard');
+                        }, function (err) {
+                            $rootScope.error = err;
+                        });
+                };
+
+                function EL(id) { return document.getElementById(id); }
+
+                function readFile() {
+                    if (this.files && this.files[0]) {
+                        var FR= new FileReader();
+                        FR.onload = function(e) {
+                            $scope.$apply(function () {
+                                $scope.building.pic = e.target.result;
+                            });
+                        };
+                        FR.readAsDataURL( this.files[0] );
+                    }
                 }
+
+                EL("file").addEventListener("change", readFile, false);
             }]
         })
 
@@ -89,24 +140,78 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     return Buildings.getLevel($stateParams.tag, $stateParams.level);
                 }
             },
-            controller: ["$rootScope", "$scope", "$stateParams", "level", function ($rootScope, $scope, $stateParams, level) {
+            controller: ["$rootScope", "$scope", "$stateParams", "level", "Buildings", function ($rootScope, $scope, $stateParams, level, Buildings) {
                 $scope.building = $stateParams.tag;
                 $scope.level = level;
                 console.log("Level :", $scope.level);
+
+                $scope.updateLevel = function () {
+                    Buildings.updateLevel($scope.building, $scope.level)
+                        .then(function () {
+                            Buildings.getLevel($scope.building, $stateParams.level)
+                                .then(function (response) {
+                                    $scope.level = response;
+                                    console.log("Level :", $scope.level);
+                                    $state.go('app.building', { tag: $scope.building });
+                                });
+                        }, function (err) {
+                            $rootScope.error = err;
+                        });
+                };
+
+                function EL(id) { return document.getElementById(id); } // Get el by ID helper function
+
+                function readFile() {
+                    if (this.files && this.files[0]) {
+                        var FR= new FileReader();
+                        FR.onload = function(e) {
+                            $scope.$apply(function () {
+                                $scope.level.pic = e.target.result;
+                            });
+                        };
+                        FR.readAsDataURL( this.files[0] );
+                    }
+                }
+
+                EL("file").addEventListener("change", readFile, false);
             }]
         })
 
         .state('app.createlevel', {
             url: "/building/:tag/levelcreate",
             templateUrl: "./templates/level-new.html",
-            controller: ["$rootScope", "$scope", "$stateParams", "Buildings", function ($rootScope, $scope, $stateParams, Buildings) {
+            controller: ["$rootScope", "$scope", "$stateParams", "$state", "Buildings", function ($rootScope, $scope, $stateParams, $state, Buildings) {
                 $scope.building = $stateParams.tag;
-                $scope.level = {};
+                $scope.level = {
+                    number: 0
+                };
 
                 $scope.newLevel = function () {
                     console.log($scope.level);
-                    //Buildings.createLevel($scope.level);
+                    Buildings.createLevel($scope.building, $scope.level)
+                        .then(function (response) {
+                            console.log(response);
+                            $state.go('app.building', { tag: $scope.building });
+                        }, function (err) {
+                            $rootScope.error = err;
+                        });
+                };
+
+                function EL(id) { return document.getElementById(id); } // Get el by ID helper function
+
+                function readFile() {
+                    if (this.files && this.files[0]) {
+                        var FR= new FileReader();
+                        FR.onload = function(e) {
+                            $scope.$apply(function () {
+                                $scope.level.pic = e.target.result;
+                            });
+                        };
+                        FR.readAsDataURL( this.files[0] );
+                    }
                 }
+
+                EL("file").addEventListener("change", readFile, false);
             }]
         })
     ;
