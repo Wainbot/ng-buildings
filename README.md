@@ -9,6 +9,8 @@
 ## How to install
 
 ```bash
+$ git clone https://github.com/Wainbot/ng-buildings
+$ cd ng-buildings/
 $ bower install
 ```
 
