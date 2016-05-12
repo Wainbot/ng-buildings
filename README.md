@@ -2,15 +2,14 @@
 
 Only works if server is started
 
-Server REST : https://github.com/Daxeme/BuildingNFC
-
-App Mobile : https://github.com/Wainbot/NFC
+- Server REST : https://github.com/Daxeme/BuildingNFC
+- App Mobile : https://github.com/Wainbot/NFC
 
 ## Contributors
 
-- Jérémy Froment
-- Damien Clémenceau
-- Régis Parpex
+- Parpex Regis
+- Clémenceau Damien
+- Froment Jérémy
 
 ## How to install
 
