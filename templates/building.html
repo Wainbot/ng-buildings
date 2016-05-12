@@ -64,7 +64,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr data-ng-repeat="level in building.levels">
+                    <tr data-ng-repeat="level in building.levels | orderBy: 'level'">
                         <td>{{level.level}}</td>
                         <td>
                             <img data-ng-src="{{level.pic}}" width="20" height="20" alt="image of level n°{{level.level}}">
