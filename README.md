@@ -1,7 +1,6 @@
-# SensorApp
-Admin Buildings (RFID) 
+# Admin NFC App
 
-# Contributors
+## Contributors
 
 - Jérémy Froment
 - Damien Clémenceau
