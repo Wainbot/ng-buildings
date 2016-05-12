@@ -6,12 +6,12 @@
 - Damien Clémenceau
 - Régis Parpex
 
-### How to install :
+## How to install
 
 ```bash
 $ bower install
 ```
 
-### How to run for dev :
+## How to run for dev
 
 Launch index.html in your browser with apache server (MAMP/WAMP)
