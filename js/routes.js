@@ -152,7 +152,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                                 .then(function (response) {
                                     $scope.level = response;
                                     console.log("Level :", $scope.level);
-                                    $state.go('app.building', { tag: $scope.building });
                                 });
                         }, function (err) {
                             $rootScope.error = err;

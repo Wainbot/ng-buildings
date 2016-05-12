@@ -89,3 +89,18 @@ body {
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
 }
+
+thead {
+  background: #ff6633;
+  color: #FFF;
+}
+
+.card {
+  border: 2px solid #ff6633 !important;
+}
+
+.table {
+  th {
+    border: none !important;
+  }
+}
